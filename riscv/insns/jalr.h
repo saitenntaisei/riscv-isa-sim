@@ -1,6 +1,6 @@
 reg_t tmp = npc;
 set_pc((RS1 + insn.i_imm()) & ~reg_t(1));
- 
-CHECK_RA(RS1);
-
+if (insn.rd() == 0 && insn.i_imm() == 0) { 
+    CHECK_RA(RS1);
+}
 WRITE_RD(tmp);
