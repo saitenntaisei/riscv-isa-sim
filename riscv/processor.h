@@ -159,7 +159,7 @@ struct state_t
   void shadow_stack_push(reg_t ra);
   reg_t shadow_stack_pop();
   void write_xpr(size_t i, reg_t value);
-  void check_ra(size_t i, reg_t value);
+  void check_ra(reg_t value);
   
   static const int num_triggers = 4;
 
