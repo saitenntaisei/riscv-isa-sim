@@ -385,7 +385,7 @@ void state_t::write_xpr(size_t i, reg_t value) {
 }
 
 void state_t::check_ra(size_t i, reg_t value) {
-  // std::cerr << "[LOG] check_ra called at " << __FILE__ << ":" << __LINE__ << std::endl;
+  std::cerr << "[LOG] check_ra called at " << __FILE__ << ":" << __LINE__ <<" "<<i<< std::endl;
   reg_t shadow_value = shadow_stack_pop();
   if (shadow_value != value) {
     fprintf(stderr, "error: incorrect stack\n");
