@@ -11,6 +11,7 @@
 #include <unordered_map>
 #include <map>
 #include <cassert>
+#include <stack>
 #include "debug_rom_defines.h"
 
 class processor_t;
@@ -196,6 +197,7 @@ struct state_t
   static const int max_pmp = 16;
   uint8_t pmpcfg[max_pmp];
   reg_t pmpaddr[max_pmp];
+  std::stack<reg_t> shadow_stack;
 
   uint32_t fflags;
   uint32_t frm;
