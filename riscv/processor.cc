@@ -376,9 +376,10 @@ reg_t state_t::shadow_stack_pop()
 }
 
 void state_t::write_xpr(size_t i, reg_t value) {
-  std::cerr << "[LOG] write_xpr called at " << __FILE__ << ":" << __LINE__ << std::endl;
+ 
   XPR.write(i, value);
   if (i == X_RA) {
+    std::cerr << "[LOG] write_xpr called at " << __FILE__ << ":" << __LINE__ << std::endl;
     shadow_stack_push(value);
   }
 }
