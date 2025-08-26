@@ -378,15 +378,6 @@ reg_t state_t::shadow_stack_pop()
   return ra;
 }
 
-void state_t::write_xpr(size_t i, reg_t value) {
- 
-  XPR.write(i, value);
-  if (i == X_RA) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    std::cerr << "[LOG] write_xpr called at " << __FILE__ << ":" << __LINE__ <<" "<<value<< std::endl;
-    shadow_stack_push(value);
-  }
-}
 
 void state_t::check_ra(reg_t value) {
 
