@@ -375,6 +375,16 @@ reg_t state_t::shadow_stack_pop()
   return ra;
 }
 
+void state_t::write_xpr(size_t i, reg_t value) {
+  if (i == 0) {
+    shadow_stack_pop();
+  }
+  XPR.write(i, value);
+  if (i == 1) {
+    shadow_stack_push(value);
+  }
+}
+
 void processor_t::vectorUnit_t::reset(){
   free(reg_file);
   VLEN = get_vlen();
