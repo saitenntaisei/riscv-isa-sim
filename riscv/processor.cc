@@ -390,6 +390,7 @@ void state_t::check_ra(reg_t value) {
   reg_t shadow_value = shadow_stack_pop();
   if (shadow_value != value) {
     fprintf(stderr, "error: incorrect stack\n");
+    std::abort();
   }
 }
 
