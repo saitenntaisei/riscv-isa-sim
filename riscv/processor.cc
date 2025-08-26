@@ -359,6 +359,22 @@ void state_t::reset(reg_t max_isa)
 #endif
 }
 
+void state_t::shadow_stack_push(reg_t ra)
+{
+  shadow_stack.push(ra);
+}
+
+reg_t state_t::shadow_stack_pop()
+{
+  if (shadow_stack.empty()) {
+    fprintf(stderr, "error: bad shadow stack pop\n");
+    std::abort();
+  }
+  reg_t ra = shadow_stack.top();
+  shadow_stack.pop();
+  return ra;
+}
+
 void processor_t::vectorUnit_t::reset(){
   free(reg_file);
   VLEN = get_vlen();

@@ -156,7 +156,9 @@ struct type_sew_t<64>
 struct state_t
 {
   void reset(reg_t max_isa);
-
+  void shadow_stack_push(reg_t ra);
+  reg_t shadow_stack_pop();
+  
   static const int num_triggers = 4;
 
   reg_t pc;
