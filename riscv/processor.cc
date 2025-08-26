@@ -381,17 +381,12 @@ void state_t::write_xpr(size_t i, reg_t value) {
  
   XPR.write(i, value);
   if (i == X_RA) {
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-    std::cerr << "[LOG] write_xpr called at " << __FILE__ << ":" << __LINE__ << std::endl;
     shadow_stack_push(value);
   }
 }
 
 void state_t::check_ra(reg_t value) {
-  std::cerr << "[LOG] check_ra called at " << __FILE__ << ":" << __LINE__ << std::endl;
-  std::cerr << std::flush;
-  // sleep 1s
-  std::this_thread::sleep_for(std::chrono::seconds(1));
+
   reg_t shadow_value = shadow_stack_pop();
   if (shadow_value != value) {
     fprintf(stderr, "error: incorrect stack\n");
