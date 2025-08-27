@@ -176,7 +176,7 @@ private:
 #define WRITE_RD(value) WRITE_REG(insn.rd(), value)
 
 #ifndef RISCV_ENABLE_COMMITLOG
-# define WRITE_REG(reg, value) STATE.XPR.write(reg, value);
+# define WRITE_REG(reg, value) STATE.XPR.write(reg, value)
 # define WRITE_FREG(reg, value) DO_WRITE_FREG(reg, freg(value))
 # define WRITE_VSTATUS
 #else
@@ -187,7 +187,7 @@ private:
 # define WRITE_REG(reg, value) ({ \
     reg_t wdata = (value); /* value may have side effects */ \
     STATE.log_reg_write[(reg) << 2] = {wdata, 0}; \
-    STATE.XPR.write(reg, value); \
+    STATE.XPR.write(reg, wdata); \
   })
 # define WRITE_FREG(reg, value) ({ \
     freg_t wdata = freg(value); /* value may have side effects */ \
