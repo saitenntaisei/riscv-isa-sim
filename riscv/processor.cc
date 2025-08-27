@@ -382,8 +382,6 @@ reg_t state_t::shadow_stack_pop()
 void state_t::check_ra(reg_t value) {
 
   reg_t shadow_value = shadow_stack_pop();
-  std::cerr << "[LOG] check_ra called at " << __FILE__ << ":" << __LINE__ <<" "<<shadow_value<<" "<<value<< std::endl;
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
   if (shadow_value != value) {
     fprintf(stderr, "error: incorrect stack\n");
     std::abort();
